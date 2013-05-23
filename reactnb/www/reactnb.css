@@ -1,0 +1,35 @@
+body {
+  padding-top: 20px;
+}
+
+.input, .output {
+  font-family: monospace;
+  white-space: pre;
+  padding: 2px;
+}
+
+.input {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.input:hover {
+  background-color: #EEF;
+}
+
+.output {
+  margin-left: 50px;
+}
+
+input {
+  font-size: 24px;
+  width: 100%;
+  border: 1px solid #CCC;
+  margin-top: 8px;
+  margin-bottom: 30px;
+}
+
+::-webkit-input-placeholder {
+  color: silver;
+  font-style: italic;
+}
