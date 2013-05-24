@@ -1,24 +1,3 @@
-var lastHidden = [];
-$(function() {
-  $('#trash').droppable({
-    tolerance: 'pointer',
-    drop: function(e, ui) {
-      lastHidden.push(ui.draggable);
-      ui.draggable.hide('drop');
-      $(this).addClass('full');
-    }
-  });
-  $('#trash').click(function(e) {
-    if (lastHidden.length > 0) {
-      lastHidden.pop().show('drop');
-      if (lastHidden.length == 0) {
-        $(this).removeClass('full');
-      }
-    }
-  });
-  $('#command').select();
-});
-
 $(document).on('click', '.input', function(e) {
   $('#command').val($(e.target).text());
   $('#command').select();
@@ -36,10 +15,35 @@ $(document).on('dragstart', '.past_command', function(e, ui) {
 $(document).on('drag', '.past_command', function(e, ui) {
   var startOffset = $(this).data('dragStartOffset');
   $(this).css({
-    position: 'absolute',
+    position: 'fixed',
     top: startOffset.top + (ui.position.top - ui.originalPosition.top),
     left: startOffset.left + (ui.position.left - ui.originalPosition.left)
   });
+});
+
+$(document).keydown(function(e) {
+  if (e.which == 75 && e.ctrlKey) { // Ctrl-K
+    function remove(e) {
+      Shiny.unbindAll(this);
+      $(this).remove();
+    }
+    if (!e.shiftKey)
+      $('.past_command:not(.detached)').hide('drop', remove);
+    else
+      $('.past_command').hide('drop', remove);
+  }
+  if (e.which == 71 && e.ctrlKey) { // Ctrl-G
+    $('.past_command.detached').each(function() {
+      var props = {};
+      if (/^-/.test(this.style.top))
+        props.top = 0;
+      if (/^-/.test(this.style.left))
+        props.left = 0;
+      if (Object.keys(props).length > 0) {
+        $(this).animate(props, 250);
+      }
+    });
+  }
 });
 
 var commandInputBinding = new Shiny.InputBinding();
@@ -99,24 +103,6 @@ $.extend(commandInputBinding, {
           }, 0);
         }
       }
-      if (e.which == 75 && e.ctrlKey) { // Ctrl-K
-        if (!e.shiftKey)
-          $('.past_command:not(.detached)').remove();
-        else
-          $('.past_command').remove();
-      }
-      if (e.which == 71 && e.ctrlKey) { // Ctrl-G
-        $('.past_command.detached').each(function() {
-          var props = {};
-          if (/^-/.test(this.style.top))
-            props.top = 0;
-          if (/^-/.test(this.style.left))
-            props.left = 0;
-          if (Object.keys(props).length > 0) {
-            $(this).animate(props, 250);
-          }
-        });
-      }
       if (e.keyCode == 13) {
 
         self.history.push($el.val());
@@ -162,3 +148,27 @@ $.extend(highlightTextOutputBinding, {
   }
 });
 Shiny.outputBindings.register(highlightTextOutputBinding, 'reactnb-highlightTextOutput');
+
+
+// Trash functionality
+
+var trash = [];
+$(function() {
+  $('#trash').droppable({
+    tolerance: 'pointer',
+    drop: function(e, ui) {
+      trash.push(ui.draggable);
+      ui.draggable.hide('drop');
+      $(this).addClass('full');
+    }
+  });
+  $('#trash').click(function(e) {
+    if (trash.length > 0) {
+      trash.pop().show('drop');
+      if (trash.length == 0) {
+        $(this).removeClass('full');
+      }
+    }
+  });
+  $('#command').select();
+});
