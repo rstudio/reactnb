@@ -31,7 +31,10 @@ shinyServer(function(input, output, session) {
       })
     } else {
       output[[paste0(cmdId, '_output')]] <- renderPrint({
-        eval(parse(text=cmdText), envir = sessionEnv)
+        if (grepl('^\\s*#', cmdText))
+          invisible(eval(parse(text=cmdText), envir = sessionEnv))
+        else
+          eval(parse(text=cmdText), envir = sessionEnv)
       })
     }
     outputOptions(output, paste0(cmdId, '_output'), suspendWhenHidden=FALSE)
