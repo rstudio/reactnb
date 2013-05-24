@@ -1,35 +1,80 @@
 body {
+  font-size: 20px;
+  background-color: #303030;
+  color: #F5F5F5;
   padding-top: 20px;
 }
 
 .input, .output {
-  font-family: monospace;
-  white-space: pre;
-  padding: 2px;
+  font-family: 'Source Code Pro', monospace;
 }
 
 .input {
-  font-weight: bold;
   cursor: pointer;
+  padding: 8px;
+  margin-top: 16px;
+  color: #75B5AA;
+  white-space: pre-wrap;
 }
 
 .input:hover {
-  background-color: #EEF;
+  background-color: #505050;
 }
 
 .output {
+  font-weight: bold;
+  margin: 8px;
   margin-left: 50px;
 }
 
-input {
-  font-size: 24px;
-  width: 100%;
-  border: 1px solid #CCC;
-  margin-top: 8px;
-  margin-bottom: 30px;
+.output.highlight-text-output {
+  white-space: pre-wrap;
+}
+
+.output:empty {
+  margin: 0;
+}
+
+.command_container {
+  margin-top: 30px;
+  color: #B0B0B0;
+}
+.past_command.detached {
+  background-color: rgba(80, 80, 80, 0.95);
+  border-radius: 16px;
+  padding: 20px;
+  padding-top: 0;
+  max-width: 800px;
+}
+.highlight {
+  color: #F4BF75;
+}
+
+input#command {
+  font-family: 'Source Code Pro', monospace;
+  font-size: 36px;
+  width: 98%;
+  border: 1px solid #505050;
+  margin-top: 6px;
+  margin-bottom: 100px;
+  padding: 3px 8px;
+  background-color: #F5F5F5;
+  outline: none;
 }
 
 ::-webkit-input-placeholder {
   color: silver;
   font-style: italic;
+}
+
+#trash {
+  position: fixed;
+  right: 0;
+  bottom: 20px;
+  width: 96px;
+  height: 96px;
+  background: url(images/trash-empty.png) bottom right no-repeat;
+}
+#trash.full {
+  background-image: url(images/trash-full.png);
 }
