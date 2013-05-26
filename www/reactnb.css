@@ -17,6 +17,11 @@ body {
   white-space: pre-wrap;
 }
 
+.detached .input {
+  margin-left: -8px;
+  margin-right: -8px;
+}
+
 .input:hover {
   background-color: #505050;
 }
@@ -25,6 +30,9 @@ body {
   font-weight: bold;
   margin: 8px;
   margin-left: 50px;
+}
+.detached .output {
+  margin: 0;
 }
 
 .output.highlight-text-output {
@@ -77,4 +85,23 @@ input#command {
 }
 #trash.full {
   background-image: url(images/trash-full.png);
+}
+
+.viewonly #output {
+  display: none;
+}
+.viewonly .command_container {
+  display: none;
+}
+.viewonly .input {
+  display: none;
+}
+.viewonly .detached {
+  padding-top: 20px;
+}
+.viewonly .highlight {
+  color: inherit;
+}
+.viewonly #trash {
+  display: none;
 }

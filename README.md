@@ -24,9 +24,13 @@ Keyboard shortcuts:
 - Ctrl+Shift+K - Clear all commands
 - Up/Down - Navigate command history
 - Ctrl+G - If commands go past the top or left of the screen, Ctrl+G will gather them back so they're visible
+- Ctrl+H - Hide all input commands and nondetached output
 
 Magic prefixes:
 
-\* - plot (also looks for plot, hist, ggplot, qplot in the command and assumes plotting)  
-^ - data frames rendered using xtable  
-& - UI (e.g. numericInput or whatever)  
+[print] - The default
+[plot] - plot (also looks for plot, hist, ggplot, qplot in the command and assumes plotting)
+[table] - data frames rendered using xtable  
+[ui] - UI (e.g. numericInput or whatever)  
+[html] - HTML using Shiny builder functions (or `HTML()` for raw HTML, `includeMarkdown()`, `includeHTML()`, etc.).
+[text] - Display as string instead of print (e.g. `[text] "foo"` would display `foo` instead of `[1] "foo"`)

@@ -25,7 +25,11 @@ shinyServer(function(input, output, session) {
       output[[paste0(cmdId, '_output')]] <- renderTable({
         eval(parse(text=cmdText), envir = sessionEnv)
       })
-    } else if (cmdType == 'html') {
+    } else if (cmdType == 'text') {
+      output[[paste0(cmdId, '_output')]] <- renderText({
+        eval(parse(text=cmdText), envir = sessionEnv)
+      })
+    } else if (cmdType == 'html' || cmdType == 'ui') {
       output[[paste0(cmdId, '_output')]] <- renderUI({
         eval(parse(text=cmdText), envir = sessionEnv)
       })

@@ -23,6 +23,7 @@ $(document).on('drag', '.past_command', function(e, ui) {
 
 $(document).keydown(function(e) {
   if (e.which == 75 && e.ctrlKey) { // Ctrl-K
+    e.preventDefault();
     function remove(e) {
       Shiny.unbindAll(this);
       $(this).remove();
@@ -33,6 +34,7 @@ $(document).keydown(function(e) {
       $('.past_command').hide('drop', remove);
   }
   if (e.which == 71 && e.ctrlKey) { // Ctrl-G
+    e.preventDefault();
     $('.past_command.detached').each(function() {
       var props = {};
       if (/^-/.test(this.style.top))
@@ -43,6 +45,10 @@ $(document).keydown(function(e) {
         $(this).animate(props, 250);
       }
     });
+  }
+  if (e.which == 72 && e.ctrlKey) { // Ctrl-H
+    e.preventDefault();
+    $('html').toggleClass('viewonly');
   }
 });
 
@@ -62,16 +68,15 @@ $.extend(commandInputBinding, {
   parseInput: function(el) {
     var val = $(el).val();
     // Commands with a leading * are plot commands
-    if (/^\*/.test(val)) {
-      return {type: 'plot', text: val.substr(1)}
-    } else if (/^\^/.test(val)) {
-      return {type: 'table', text: val.substr(1)}
-    } else if (/^\&/.test(val)) {
-      return {type: 'html', text: val.substr(1)}
+    var m = /^\[(\w+)\](.*)$/.exec(val);
+    if (m) {
+      if (!/^(plot|table|html|ui|print|text)$/.test(m[1])) {
+        alert('Unknown command type: ' + m[1]);
+        throw new Error('Unknown command type');
+      }
+      return {type: m[1], text: m[2]};
     } else if (/\b(plot|hist|lattice|ggplot|qplot)\b/.test(val) && !/\blibrary\b/.test(val)) {
       return {type: 'plot', text: val}
-    } else if (/^\*/.test(val)) {
-      return {type: 'plot', text: val.substr(1)}
     } else {
       return {type: 'print', text: val};
     }
@@ -117,7 +122,9 @@ $.extend(commandInputBinding, {
           outputClass = 'shiny-plot-output';
         } else if (parsed.type === 'table') {
           outputClass = 'shiny-html-output';
-        } else if (parsed.type === 'html') {
+        } else if (parsed.type === 'text') {
+          outputClass = 'shiny-text-output';
+        } else if (parsed.type === 'html' || parsed.type === 'ui') {
           outputClass = 'shiny-html-output';
         }
         var outputDiv = $('<div id="cmd' + self.nextId + '_output" class="output ' + outputClass + '">');
