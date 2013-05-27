@@ -20,7 +20,7 @@ shinyServer(function(input, output, session) {
         fg <- '#F5F5F5'
         #par(bg='#303030', fg=fg, col=fg, col.axis=fg, col.lab=fg, col.main=fg, col.sub=fg)
         eval(parse(text=cmdText), envir = sessionEnv)
-      }, width=400, height=300)
+      })
     } else if (cmdType == 'table') {
       output[[paste0(cmdId, '_output')]] <- renderTable({
         eval(parse(text=cmdText), envir = sessionEnv)

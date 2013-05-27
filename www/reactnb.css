@@ -105,3 +105,12 @@ input#command {
 .viewonly #trash {
   display: none;
 }
+
+.shiny-plot-output {
+  width: 400px;
+  height: 300px;
+}
+.detached .shiny-plot-output {
+  width: 600px;
+  height: 400px;
+}

@@ -11,6 +11,8 @@ $(document).on('dragstart', '.past_command', function(e, ui) {
   });
   $(this).addClass('detached');
   $('body>div').append(this);
+  // Cause plot sizes to be sent, if necessary
+  $(this).trigger('shown');
 });
 $(document).on('drag', '.past_command', function(e, ui) {
   var startOffset = $(this).data('dragStartOffset');
