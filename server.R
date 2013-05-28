@@ -45,7 +45,6 @@ shinyServer(function(input, output, session) {
           eval(parse(text=cmdText), envir = sessionEnv)
       })
     }
-    outputOptions(output, paste0(cmdId, '_output'), suspendWhenHidden=FALSE)
   })
 
 })
