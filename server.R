@@ -2,8 +2,12 @@ options(width=60)
 
 shinyServer(function(input, output, session) {
 
-  sessionEnv = new.env()
-  #sessionEnv$v <- reactiveValues()
+  builtinsEnv <- new.env()
+  sessionEnv <- new.env(parent=builtinsEnv)
+  builtinsEnv$temporal <- function(expr=NULL, period=1000) {
+    invalidateLater(period, session)
+    expr
+  }
 
   observe({
     if (is.null(input$command))

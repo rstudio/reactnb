@@ -125,7 +125,7 @@ $.extend(commandInputBinding, {
         } else if (parsed.type === 'table') {
           outputClass = 'shiny-html-output';
         } else if (parsed.type === 'text') {
-          outputClass = 'shiny-text-output';
+          outputClass = 'highlight-text-output';
         } else if (parsed.type === 'html' || parsed.type === 'ui') {
           outputClass = 'shiny-html-output';
         }
@@ -152,8 +152,6 @@ $.extend(highlightTextOutputBinding, {
   renderValue: function(el, data) {
     $(el).text(data);
     $(el).addClass('highlight').removeClass('highlight', 800, 'easeInExpo');
-    //if (data)
-    //  $(el).effect('highlight', 1000);
   }
 });
 Shiny.outputBindings.register(highlightTextOutputBinding, 'reactnb-highlightTextOutput');
