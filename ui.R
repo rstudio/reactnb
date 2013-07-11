@@ -4,6 +4,7 @@ shinyUI(basicPage(
   tags$script(src='lib/jquery.ui.touch-punch.min.js'),
   tags$script(src='reactnb.js'),
   tags$link(rel='stylesheet', type='text/css', href='reactnb.css'),
+  tags$link(rel='stylesheet', type='text/css', href='reactnb-hi.css'),
   tags$div(id='output'),
   tags$div(class='command_container',
     'Type an R expression to observe:',

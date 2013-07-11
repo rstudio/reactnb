@@ -52,6 +52,10 @@ $(document).keydown(function(e) {
     e.preventDefault();
     $('html').toggleClass('viewonly');
   }
+  if (e.which == 73 && e.ctrlKey) { // Ctrl-H
+    e.preventDefault();
+    $('html').toggleClass('hicontrast');
+  }
 });
 
 var commandInputBinding = new Shiny.InputBinding();

@@ -1,0 +1,120 @@
+html.hicontrast body {
+  font-size: 20px;
+  background-color: white;
+  color: black;
+  padding-top: 20px;
+}
+
+html.hicontrast .input, html.hicontrast .output {
+  font-family: 'Source Code Pro', monospace;
+}
+
+html.hicontrast .input {
+  cursor: pointer;
+  padding: 8px;
+  margin-top: 16px;
+  color: black;
+  white-space: pre-wrap;
+}
+
+html.hicontrast .detached .input {
+  margin-left: -8px;
+  margin-right: -8px;
+}
+
+html.hicontrast .input:hover {
+  background-color: #DEF;
+}
+
+html.hicontrast .output {
+  font-weight: bold;
+  margin: 8px;
+  margin-left: 50px;
+}
+html.hicontrast .output img {
+  border: 1px solid silver;
+  margin: -1px;
+}
+html.hicontrast .detached .output {
+  margin: 0;
+}
+
+html.hicontrast .output.highlight-text-output {
+  white-space: pre-wrap;
+}
+
+html.hicontrast .output:empty {
+  margin: 0;
+}
+
+html.hicontrast .command_container {
+  margin-top: 30px;
+  color: black;
+}
+html.hicontrast .past_command.detached {
+  background-color: #F0F0F0;
+  border-radius: 16px;
+  padding: 20px;
+  padding-top: 0;
+  max-width: 800px;
+}
+html.hicontrast .highlight {
+  color: #0C0;
+}
+
+html.hicontrast input#command {
+  font-family: 'Source Code Pro', monospace;
+  font-size: 36px;
+  width: 98%;
+  border: 1px solid #505050;
+  margin-top: 6px;
+  margin-bottom: 100px;
+  padding: 3px 8px;
+  background-color: #F5F5F5;
+  outline: none;
+}
+
+html.hicontrast ::-webkit-input-placeholder {
+  color: silver;
+  font-style: italic;
+}
+
+html.hicontrast #trash {
+  position: fixed;
+  right: 0;
+  bottom: 20px;
+  width: 96px;
+  height: 96px;
+  background: url(images/trash-empty.png) bottom right no-repeat;
+}
+html.hicontrast #trash.full {
+  background-image: url(images/trash-full.png);
+}
+
+html.hicontrast .viewonly #output {
+  display: none;
+}
+html.hicontrast .viewonly .command_container {
+  display: none;
+}
+html.hicontrast .viewonly .input {
+  display: none;
+}
+html.hicontrast .viewonly .detached {
+  padding-top: 20px;
+}
+html.hicontrast .viewonly .highlight {
+  color: inherit;
+}
+html.hicontrast .viewonly #trash {
+  display: none;
+}
+
+html.hicontrast .shiny-plot-output {
+  width: 400px;
+  height: 300px;
+}
+html.hicontrast .detached .shiny-plot-output {
+  width: 600px;
+  height: 400px;
+}
