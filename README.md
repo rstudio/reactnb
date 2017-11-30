@@ -1,14 +1,6 @@
-## Installation
-
-May require the very latest version of Shiny:
-```
-install.packages('httpuv', repos=c(RStudio='http://rstudio.org/_packages/', CRAN='http://cran.rstudio.com'))
-devtools::install_github('shiny', 'rstudio')
-```
-
 ## Usage
 
-Go into seattle-meetup/reactnb and run Shiny the usual way:
+Go into the `reactnb` directory and run Shiny the usual way:
 
 ```text
 R -e "shiny::runApp(launch.browser=TRUE)"
